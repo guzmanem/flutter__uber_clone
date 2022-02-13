@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:uber_clone/screens/login/login_screen.dart';
 
-import './screen/home_screen.dart';
+import 'screens/home/home_screen.dart';
 
 void main() {
   runApp(UberClone());
@@ -22,6 +23,7 @@ class _UberCloneState extends State<UberClone> {
       initialRoute: 'home',
       routes: {
         'home': (BuildContext ctx) => HomeScreen(),
+        'login': (BuildContext ctx) => LoginScreen(),
       },
     );
   }

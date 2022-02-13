@@ -22,14 +22,14 @@ class HomeScreen extends StatelessWidget {
           child: Column(
             children: [
               bannerTypeUser(context),
-              const SizedBox(height: 50),
-              textTypeUser('SELECCIONA TU ROL'),
               const SizedBox(height: 30),
-              iconTypeUser(Icons.person),
+              textTypeUser('SELECCIONA TU ROL'),
+              const SizedBox(height: 10),
+              iconTypeUser(context, Icons.person),
               const SizedBox(height: 10),
               textTypeUser('Cliente'),
-              const SizedBox(height: 30),
-              iconTypeUser(Icons.person_pin_rounded),
+              const SizedBox(height: 10),
+              iconTypeUser(context, Icons.person_pin_rounded),
               const SizedBox(height: 10),
               textTypeUser('Pasajero')
             ],
@@ -60,11 +60,16 @@ Widget bannerTypeUser(BuildContext context) {
   );
 }
 
-Widget iconTypeUser(IconData icon) {
-  return Icon(
-    icon,
-    size: 150,
-    color: Colors.white,
+Widget iconTypeUser(BuildContext context, IconData icon) {
+  return GestureDetector(
+    onTap: () {
+      goToLogin(context);
+    },
+    child: Icon(
+      icon,
+      size: 150,
+      color: Colors.white,
+    ),
   );
 }
 
@@ -75,4 +80,8 @@ Widget textTypeUser(String typeUser) {
       color: Colors.white,
     ),
   );
+}
+
+void goToLogin(BuildContext context) {
+  Navigator.of(context).pushNamed('login');
 }
