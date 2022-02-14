@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 
+import './home_controller.dart';
+
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  HomeScreen({Key? key}) : super(key: key);
+
+  final HomeController _con = HomeController();
 
   @override
   Widget build(BuildContext context) {
+
+    _con.init(context);
+
     return Scaffold(
       body: SafeArea(
         child: Container(
@@ -38,50 +44,45 @@ class HomeScreen extends StatelessWidget {
       ),
     );
   }
-}
 
-Widget bannerTypeUser(BuildContext context) {
-  return ClipPath(
-    clipper: DiagonalPathClipperTwo(),
-    child: Container(
-      height: MediaQuery.of(context).size.height * 0.3,
-      color: Colors.white,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: const [
-          Icon(
-            Icons.bus_alert,
-            size: 100,
-          ),
-          Text('Fácil y Rápido'),
-        ],
+  Widget bannerTypeUser(BuildContext context) {
+    return ClipPath(
+      clipper: DiagonalPathClipperTwo(),
+      child: Container(
+        height: MediaQuery.of(context).size.height * 0.3,
+        color: Colors.white,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: const [
+            Icon(
+              Icons.bus_alert,
+              size: 100,
+            ),
+            Text('Fácil y Rápido'),
+          ],
+        ),
       ),
-    ),
-  );
+    );
+  }
+ 
+  Widget iconTypeUser(BuildContext context, IconData icon) {
+    return GestureDetector(
+      onTap: _con.goToLogin,
+      child: Icon(
+        icon,
+        size: 150,
+        color: Colors.white,
+      ),
+    );
+  }
+
+  Widget textTypeUser(String typeUser) {
+    return Text(
+      typeUser,
+      style: const TextStyle(
+        color: Colors.white,
+      ),
+    );
+  }
 }
 
-Widget iconTypeUser(BuildContext context, IconData icon) {
-  return GestureDetector(
-    onTap: () {
-      goToLogin(context);
-    },
-    child: Icon(
-      icon,
-      size: 150,
-      color: Colors.white,
-    ),
-  );
-}
-
-Widget textTypeUser(String typeUser) {
-  return Text(
-    typeUser,
-    style: const TextStyle(
-      color: Colors.white,
-    ),
-  );
-}
-
-void goToLogin(BuildContext context) {
-  Navigator.of(context).pushNamed('login');
-}
